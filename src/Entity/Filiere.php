@@ -71,4 +71,10 @@ class Filiere
 
         return $this;
     }
+    
+    public __contruct(){
+        $this->updateAt = new \DateTime();
+        $this->createAt = new \DateTime();
+
+    }
 }
