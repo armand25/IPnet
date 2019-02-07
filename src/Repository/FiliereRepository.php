@@ -22,14 +22,10 @@ class FiliereRepository extends ServiceEntityRepository
     // /**
     //  * @return Filiere[] Returns an array of Filiere objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function getAllFiliere()
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('Filiere')
             ->getQuery()
             ->getResult()
         ;
