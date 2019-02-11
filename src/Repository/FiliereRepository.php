@@ -30,7 +30,6 @@ class FiliereRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Filiere

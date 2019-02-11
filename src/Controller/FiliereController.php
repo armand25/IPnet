@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Filiere;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class FiliereController extends AbstractController
 {
@@ -27,7 +29,7 @@ class FiliereController extends AbstractController
         $objetF = new Filiere();
         $Form = $this->createForm(FiliereType::class, $objetF);
         return $this->render('filiere/editFiliere.html.twig', [
-            'controller_name' => 'FiliereController', 'FormFiliere' => $Form->createView();
+            'controller_name' => 'FiliereController', 'FormFiliere' => $Form->createView()
         ]);
     }
 }

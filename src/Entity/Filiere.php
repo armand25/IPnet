@@ -31,6 +31,11 @@ class Filiere
      */
     private $createAt;
 
+    public function __contruct(){
+        $this->updateAt = new \DateTime();
+        $this->createAt = new \DateTime();
+
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -72,9 +77,4 @@ class Filiere
         return $this;
     }
     
-    public __contruct(){
-        $this->updateAt = new \DateTime();
-        $this->createAt = new \DateTime();
-
-    }
 }
