@@ -41,6 +41,11 @@ class Article
      */
     private $updateAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeArticle", inversedBy="articles")
+     */
+    private $typeArticle;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +107,18 @@ class Article
     public function setUpdateAt(\DateTimeInterface $updateAt): self
     {
         $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    public function getTypeArticle(): ?TypeArticle
+    {
+        return $this->typeArticle;
+    }
+
+    public function setTypeArticle(?TypeArticle $typeArticle): self
+    {
+        $this->typeArticle = $typeArticle;
 
         return $this;
     }
