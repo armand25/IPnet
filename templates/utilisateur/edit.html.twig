@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% form_theme formUtilisateur 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+  <br>
+  <h1>Inscription</h1>
+  <hr>
+	{{ form_start(formUtilisateur) }}<br/>
+  {{ form_row(formUtilisateur.nom,{'label':'Votre Nom: ','attr':{'placeholder':'Rene'}}) }}
+  {{ form_row(formUtilisateur.prenom,{'label':'Votre Prenom: ','attr':{'placeholder':'Ali'}}) }}
+  {{ form_row(formUtilisateur.dateNaissance,{'label':'Votre Date de naissance: '}) }}
+  {{ form_row(formUtilisateur.sexe,{'label':'Votre Sexe: ','attr':{'placeholder':'Masculin/feminin'}}) }}
+  
+  {{ form_row(formUtilisateur.password,{'label':'Votre Mot de passe: ','attr':{'placeholder':'xxxxxxxxxxxx', 'class':'form form-control'}}) }}
+  <button id="lancer" class="btn btn-success">Enregistrer</button>
+  {{ form_end(formUtilisateur) }}
+	<script type="text/javascript">
+      $("input").blur(function(){
+  
+          if($(this).val()==""){
+            $(this).css("background-color","red");
+          }else{
+            $(this).css("background-color","lime");
+          }
+        })
+        $("input").focus(function(){
+          if($(this).val()==""){
+            $(this).css("background-color","yellow");
+          }
+      })
+        $("#lancer").click(function(){
+
+          $.ajax({
+              url: "{{path('utilisateur_add')}}",
+              type:'POST',
+              dataType:"json",
+              data:"nom="+$(":nom").val()+"&prenom="+$(":prenom").val()+"&dateDeNaissance="+$(":dateDeNaissance").val()+"&motDepasse="+$(":motDepasse").val()+"&genre="+$(":genre").val(),
+              success:function(data){
+                $(this).css("background-color","black");
+              		alert("Valide");
+              }
+          })
+        })
+  </script>
+{% endblock %}

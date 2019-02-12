@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste d'utilisateurs!{% endblock %}
+
+{% block body %}
+    <table class="table">
+    	<h1 style="color:blue">Listes des utilisateurs</h1>
+        <thead><th scope="col">Id</th> <th scope="col">Nom</th> <th scope="col">Prenom</th> <th scope="col">Date de Naissance</th> <th scope="col">Sexe</th></thead>
+        {% for utilisateur in listeUtilisateur %}
+            <thead><td>{{ utilisateur.id }}</td> <td>{{utilisateur.nom}}</td> <td>{{utilisateur.prenom}}</td> <td>{{utilisateur.dateNaissance|date('d/m/y')}}</td> <td>{{utilisateur.sexe}}</td></thead>
+        {% endfor %}
+    </table>
+{% endblock %}
