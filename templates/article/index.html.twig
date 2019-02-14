@@ -8,13 +8,14 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/wisdom/IPnet/src/Controller/ArticleController.php'|file_link(0) }}">src/Controller/ArticleController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/wisdom/IPnet/templates/article/index.html.twig'|file_link(0) }}">templates/article/index.html.twig</a></code></li>
-    </ul>
-</div>
+	{% for article in articles %}
+		<article>
+			<h2>{{ article.titre }}</h2>
+			<div class="metadata">Ecrit par Mr X le {{ article.createAt | date('d/m/Y') }} à {{ article.createAt | date('H:i') }} </div>
+			<div class="content">
+				{{ article.contenu | raw}}
+				<a href="{{ path('vue_article', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
+			</div>
+		</article>
+	{% endfor %}
 {% endblock %}

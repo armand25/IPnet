@@ -1,27 +1,60 @@
 <?php
 namespace App\Controller;
-use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Form\ArticleType;
+
+use App\Entity\Article;
+// use App\Form\ArticleType;
 class ArticleController extends AbstractController
 {
 	/**
 	 * @Route("/article", name="article")
 	 */
-	public function index(Request $request, ObjectManager $manager, ArticleRepository $repArticle)
-	{
-		$articles = $repArticle->getAllArticle();
-		// var_dump($articles);exit();
-		return $this->render('article/index.html.twig', [
-			'controller_name' => 'ArticleController',
-			'articles' => $articles,
-		]);
-	}
+	public function index(ArticleRepository $repo){
+    	$articles = $repo->findAll();
+
+        return $this->render('article/index.html.twig', [
+            'controller_name' => 'ArticleController',
+            'articles' => $articles,
+        ]);
+    }
+	/**
+     * @Route("/article/new", name="create_new")
+     * @Route("/article/{id}/edit", name="modifier")
+     */
+    public function form_art(Article $article=null, Request $request, ObjectManager $manager)
+    {
+        if(!$article){
+    	   $article = new Article();
+        }
+    	$form = $this->createFormBuilder($article)
+    				 ->add('titre')
+                     ->add('contenu')
+    				 ->getForm();
+    	$form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) 
+        {
+            if(!$article->getId()){
+                $article->setCreateAt(new \DateTime());
+            }
+
+            $manager->persist($article);
+            $manager->flush();
+
+            return $this->redirectToRoute('vue_article', ['id' => $article->getId()]);
+        }
+
+    	return $this-> render('article/edit.html.twig', [
+            'formArticle'=>$form->createView(),
+            'controller_name' => 'ArticleController',
+            'editMode' => $article->getId() !== null
+        ]);
+    }
 	/**
 	 * @Route("/article/add", name="add_article")
 	 */
@@ -72,4 +105,18 @@ class ArticleController extends AbstractController
 			'controller_name' => 'ArticleController',
 		]);
 	}
+	/**
+     * @Route("/article/{id}", name="vue_article")
+     */
+    public function rendu(Article $article)
+    {
+    	return $this->render('article/rendu.html.twig', ['article'=>$article]);
+    }
+    /**
+     * @Route("/", name="accueil")
+     */
+    public function accueil()
+    {
+    	return $this->render('article/add.html.twig');
+    }
 }

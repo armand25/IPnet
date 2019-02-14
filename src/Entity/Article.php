@@ -27,24 +27,14 @@ class Article
     private $contenu;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $etat;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createAt;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updateAt;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\TypeArticle", inversedBy="articles")
-     */
-    private $typeArticle;
+    // *
+    //  * @ORM\Column(type="integer")
+     
+    // private $etat;
 
     public function getId(): ?int
     {
@@ -75,18 +65,6 @@ class Article
         return $this;
     }
 
-    public function getEtat(): ?bool
-    {
-        return $this->etat;
-    }
-
-    public function setEtat(bool $etat): self
-    {
-        $this->etat = $etat;
-
-        return $this;
-    }
-
     public function getCreateAt(): ?\DateTimeInterface
     {
         return $this->createAt;
@@ -99,27 +77,15 @@ class Article
         return $this;
     }
 
-    public function getUpdateAt(): ?\DateTimeInterface
-    {
-        return $this->updateAt;
-    }
+    // public function getEtat(): ?int
+    // {
+    //     return $this->etat;
+    // }
 
-    public function setUpdateAt(\DateTimeInterface $updateAt): self
-    {
-        $this->updateAt = $updateAt;
+    // public function setEtat(int $etat): self
+    // {
+    //     $this->etat = $etat;
 
-        return $this;
-    }
-
-    public function getTypeArticle(): ?TypeArticle
-    {
-        return $this->typeArticle;
-    }
-
-    public function setTypeArticle(?TypeArticle $typeArticle): self
-    {
-        $this->typeArticle = $typeArticle;
-
-        return $this;
-    }
+    //     return $this;
+    // }
 }

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello hello la famille{% endblock %}
+{% form_theme formArticle 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+
+{# <form method = "POST" action = "{{path('article')}}">
+    <input class ="titre" type ="text" name = "titre" > Titre de l'article </input>
+    <input class ="contenu" type = "text" name = "contenu" > Contenu </input>
+</form>
+
+<script>
+$("#send").click(function(){
+
+  var titre = request->getTitre().val(),
+      contenu = request->getContenu().val();
+
+    $.ajax({
+
+       url : '{{path("add_article")}}',
+
+       type : 'POST',
+
+       data : 'titre=' + titre + '&contenu=' + contenu, 
+
+       dataType : 'json',
+
+       success: function ($rep) {
+           alert(rep[0]);
+       }
+
+    });
+
+});
+</script> #}
+
+
+  {{ form_start(formArticle) }}
+
+    {{ form_row(formArticle.titre, {'attr': {'placeholder':"Titre de l'article"}}) }}
+    {{ form_row(formArticle.contenu, {'attr': {'placeholder':"Contenu de l'article"}}) }}
+    {# {{ form_row(formArticle.image, {'attr': {'placeholder':"URL de l'image"}}) }} #}
+
+    <button type="submit" class="btn btn-success">
+      {% if editMode %}
+        Modifier l'article
+      {% else %}
+        Ajouter l'article
+      {% endif %}
+    </button> 
+
+  {{ form_end(formArticle) }}
+
+{% endblock %}
