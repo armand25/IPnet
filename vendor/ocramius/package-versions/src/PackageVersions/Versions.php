@@ -10,7 +10,7 @@ namespace PackageVersions;
  */
 final class Versions
 {
-    const ROOT_PACKAGE_NAME = 'symfony/website-skeleton';
+    const ROOT_PACKAGE_NAME = '__root__';
     const VERSIONS = array (
   'doctrine/annotations' => 'v1.6.0@c7f2050c68a9ab0bdb0f98567ec08d80ea7d24d5',
   'doctrine/cache' => 'v1.8.0@d768d58baee9a4862ca783840eca1b9add7a7f57',
@@ -85,7 +85,7 @@ final class Versions
   'symfony/translation' => 'v4.2.1@c0e2191e9bed845946ab3d99767513b56ca7dcd6',
   'symfony/twig-bridge' => 'v4.2.1@2e928d6c8244e7f3b32bcfac5814095a83179e60',
   'symfony/twig-bundle' => 'v4.2.1@024820cbb4aeffc4843c4170b69c057fb4840fb3',
-  'symfony/validator' => 'v4.2.1@cd35bb14a0e81bd99835e36cac4db1e72ad1939b',
+  'symfony/validator' => 'v4.2.3@f051f6bdc89b414a899c4652570352a4cdf5a868',
   'symfony/var-exporter' => 'v4.2.1@a39222e357362424b61dcde50e2f7b5a7d3306db',
   'symfony/web-link' => 'v4.2.1@f01264f10e4600c25057e257f3aafcfae586497a',
   'symfony/yaml' => 'v4.2.1@c41175c801e3edfda90f32e292619d10c27103d7',
@@ -111,13 +111,13 @@ final class Versions
   'symfony/var-dumper' => 'v4.2.1@db61258540350725f4beb6b84006e32398acd120',
   'symfony/web-profiler-bundle' => 'v4.2.1@198cb0a6b85346bbab5e1bc74a0eb175b9fa2d08',
   'symfony/web-server-bundle' => 'v4.2.1@6291444989fc753df2a9c86e5f6d5af4616804f5',
-  'paragonie/random_compat' => '2.*@',
-  'symfony/polyfill-ctype' => '*@',
-  'symfony/polyfill-iconv' => '*@',
-  'symfony/polyfill-php71' => '*@',
-  'symfony/polyfill-php70' => '*@',
-  'symfony/polyfill-php56' => '*@',
-  'symfony/website-skeleton' => 'v4.2.1.6@',
+  'paragonie/random_compat' => '2.*@4160c2076b99e9c65adbeb3582c857b35dc4bf5c',
+  'symfony/polyfill-ctype' => '*@4160c2076b99e9c65adbeb3582c857b35dc4bf5c',
+  'symfony/polyfill-iconv' => '*@4160c2076b99e9c65adbeb3582c857b35dc4bf5c',
+  'symfony/polyfill-php71' => '*@4160c2076b99e9c65adbeb3582c857b35dc4bf5c',
+  'symfony/polyfill-php70' => '*@4160c2076b99e9c65adbeb3582c857b35dc4bf5c',
+  'symfony/polyfill-php56' => '*@4160c2076b99e9c65adbeb3582c857b35dc4bf5c',
+  '__root__' => 'dev-gestion_articles@4160c2076b99e9c65adbeb3582c857b35dc4bf5c',
 );
 
     private function __construct()

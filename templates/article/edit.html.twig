@@ -42,9 +42,9 @@ $("#send").click(function(){
 
 
   {{ form_start(formArticle) }}
-
-    {{ form_row(formArticle.titre, {'attr': {'placeholder':"Titre de l'article"}}) }}
-    {{ form_row(formArticle.contenu, {'attr': {'placeholder':"Contenu de l'article"}}) }}
+    <div class="form-group">
+      {{ form_row(formArticle.titre, {'attr': {'placeholder':"Titre de l'article"}}) }}
+      {{ form_row(formArticle.contenu, {'attr': {'placeholder':"Contenu de l'article"}}) }}
     {# {{ form_row(formArticle.image, {'attr': {'placeholder':"URL de l'image"}}) }} #}
 
     <button type="submit" class="btn btn-success">
@@ -55,6 +55,7 @@ $("#send").click(function(){
       {% endif %}
     </button> 
 
+    </div>
   {{ form_end(formArticle) }}
 
 {% endblock %}
