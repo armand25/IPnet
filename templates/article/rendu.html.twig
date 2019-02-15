@@ -6,5 +6,5 @@
 
 		<h3>{{ article.contenu | raw}}</h3>
 			
-	</article>
+	</article> <a href="{{path('modifier', {'id': article.id }, 'edit')}}" class="btn btn-primary">Mettre à jour</a>
 {% endblock %}

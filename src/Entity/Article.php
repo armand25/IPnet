@@ -32,6 +32,11 @@ class Article
     private $createAt;
 
     // *
+    //  * @ORM\ManyToOne(targetEntity="App\Entity\TypeArticle", inversedBy="articles")
+     
+    // private $typeArticle;
+
+    // *
     //  * @ORM\Column(type="integer")
      
     // private $etat;
@@ -76,6 +81,18 @@ class Article
 
         return $this;
     }
+
+    // public function getTypeArticle(): ?TypeArticle
+    // {
+    //     return $this->typeArticle;
+    // }
+
+    // public function setTypeArticle(?TypeArticle $typeArticle): self
+    // {
+    //     $this->typeArticle = $typeArticle;
+
+    //     return $this;
+    // }
 
     // public function getEtat(): ?int
     // {

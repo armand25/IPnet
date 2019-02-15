@@ -12,7 +12,7 @@ use App\Entity\Article;
 class ArticleController extends AbstractController
 {
 	/**
-	 * @Route("/article", name="article")
+	 * @Route("/article", name="articles")
 	 */
 	public function index(ArticleRepository $repo){
     	$articles = $repo->findAll();
@@ -51,7 +51,6 @@ class ArticleController extends AbstractController
 
     	return $this-> render('article/edit.html.twig', [
             'formArticle'=>$form->createView(),
-            'controller_name' => 'ArticleController',
             'editMode' => $article->getId() !== null
         ]);
     }
@@ -117,6 +116,6 @@ class ArticleController extends AbstractController
      */
     public function accueil()
     {
-    	return $this->render('article/add.html.twig');
+    	return $this->render('article/accueil.html.twig');
     }
 }
