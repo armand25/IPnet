@@ -1,23 +1,13 @@
 <?php
 namespace App\Controller;
-
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
-//use Doctrine\DBAL\Types\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\SubmitButtonBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Form\ArticleType;
-
-
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
-
+// use App\Form\ArticleType;
 class ArticleController extends AbstractController
  {
 	/**
@@ -35,27 +25,26 @@ class ArticleController extends AbstractController
 	/**
 	 * @Route("/article/add", name="add_article")
 	 */
-//	public function edit(Request $request, ObjectManager $manager)
-//	{
-//		// echo($request);
-//		$article = new Article();
-//
-//		$article->setTitre($request->$request->$get("titre"));
-//
-//		$article->setContenu($request->$request->$get("contenu"));
-//		$article->setEtat($request->$request->$get("etat"));
-//		$manager->persist($article);
-//		$manager->flush($article);
-//
-//		return $this->render('article/edit.html.twig', [
-//			'controller_name' => 'ArticleController',
-//		]);
-//	}
+	public function edit(Request $request, ObjectManager $manager)
+	{
+		// echo($request); 
+		$article = new Article();
+		
+		$article->setTitre($request->$request->$get("titre"));
+		$article->setContenu($request->$request->$get("contenu"));
+		$article->setEtat($request->$request->$get("etat"));
+		$manager->persist($article);
+		$manager->flush($article);
+		
+		return $this->render('article/edit.html.twig', [
+			'controller_name' => 'ArticleController',
+		]);
+	}
 	/**
 	 * @Route("/article/add2", name="add_article2")
 	 */
 	public function edit_with_make_form(Request $request, ObjectManager $manager, ArticleRepository $repArticle)
-	{
+	{ 
 		// $article = new Article();
 		$article = $repArticle->find(1);
 		$form = $this->createForm(ArticleType::class, $article);//['key' => value]
@@ -65,8 +54,8 @@ class ArticleController extends AbstractController
 			$manager->flush($article);
 			$this->redirectToRoute('article');
 		}
-
-
+		
+		
 		return $this->render('article/edit2.html.twig', [
 			'controller_name' => 'ArticleController', 'formArticle' => $form->createView(),
 		]);
@@ -85,36 +74,26 @@ class ArticleController extends AbstractController
 		]);
 	}
 	/**
-	 * @Route("/article/edit", name="article_new")
-
+	 * @Route("/article/edit", name="article_edit")
 	 */
-	public function formulaire( Request $request, ObjectManager $manager) {
+	public function formulaire(Request $request, ObjectManager $manager) {
 		$article = new Article();
-
-		$form = $this->createFormBuilder($article)
-                    ->add('title', TextType::class)
-                    ->add('content', CKEditorType::class, array (
-                        'config' => array(
-                            'uiColor' => '#ffffff',
-                        )
-                    ))
-
+		
+		$form = $this->createFormBuilder($article) 
+					->add("Titre")
+					->add("Contenu")
 					->getForm();
-
-
-		$form->handleRequest($request);
-
-		if ($form->isSubmitted() && $form->isValid()){
+		if ($form->isSubmitted()){
 			$article->setCreateAt(new \DateTime());
 			$manager->persist($article);
 			$manager->flush();
-
+			
 		}
-
+		
 		return $this->render('article/edit.html.twig', [
-			'formArticle'=>$form->createView(),
+			'controller_name' => 'ArticleController' ,'form'=>$form->createView(),
 			]);
-
-
+		
+	
 	}
 }
